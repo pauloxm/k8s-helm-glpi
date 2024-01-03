@@ -1,6 +1,4 @@
 container:
-  args:
-    - "-text=banana"
   replicas: 2
   livenessProbe:
     enabled: true
@@ -23,7 +21,7 @@ container:
     failureThreshold: 3
   ports:
     - name: http
-      containerPort: 5678
+      containerPort: 80
   resources:
     enabled: true
     limits:
@@ -38,11 +36,11 @@ ingressNginx:
   rewriteTarget: /
   pathUrl: /
   pathType: Prefix
-  portNumber: 5678
+  portNumber: 80
 service:
   type: NodePort
   ports:
     - name: http
-      targetPort: 5678
-      port: 5678
+      targetPort: 80
+      port: 80
       nodePort: 30020
