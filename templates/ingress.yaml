@@ -1,0 +1,28 @@
+{{- if (lookup "v1" "Service" "ingress-nginx" "ingress-nginx-controller")}}
+{{- with .Values.ingressNginx }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: {{ .rewriteTarget }}
+spec:
+  ingressClassName: nginx
+  defaultBackend:
+    service:
+      name: default-backend
+      port:
+        number: {{ .portNumber }}
+  rules:
+  - http:
+      paths:
+      - path: {{ .pathUrl }}
+        pathType: {{ .pathType }}
+        backend:
+          service:
+            name: {{ .Release.Name }}
+            port:
+              number: {{ .portNumber }}
+{{- end }}
+{{- end }}
