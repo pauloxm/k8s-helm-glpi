@@ -1,0 +1,8 @@
+Projeto IaC Cluster Kubernetes usando:
+
+- Debian
+- Vagrant
+- Virt-Manager
+- Kubernetes
+- Helm
+- GLPI
