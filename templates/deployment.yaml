@@ -17,7 +17,7 @@ spec:
         app: {{ $.Release.Name }}
     spec:
       containers:
-      - image: pauloxmachado/glpi:v2.2
+      - image: pauloxmachado/glpi:v2.3
         name: {{ $.Release.Name }}
         ports:
         {{- range .ports }}
